@@ -7,13 +7,14 @@
     "lint:check": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "lint:fix": "lint . --fix",
     "prettier:check": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "lint-prettier" : "yarn lint:check && yarn prettier:check"
+    "prettier:fix": "prettier --write .",
+    "lint-prettier": "yarn lint:check && yarn prettier:check"
   },
   "repository": "https://github.com/Fahadmohammad1/attendance-system.git",
   "author": "Fahad Bin Nur",
   "license": "MIT",
   "lint-staged": {
-    "src/**/*.ts" : "yarn lint-prettier"
+    "src/**/*.ts": "yarn lint-prettier"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
