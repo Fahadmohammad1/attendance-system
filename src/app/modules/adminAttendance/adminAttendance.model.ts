@@ -8,4 +8,4 @@ const adminAttendanceSchema = new Schema({
 
 const AdminAttendance = model('AdminAttendance', adminAttendanceSchema)
 
-module.exports = AdminAttendance
+export default AdminAttendance

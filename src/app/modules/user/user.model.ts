@@ -4,12 +4,15 @@ import IUserInterface from './user.interface'
 const userSchema = new Schema<IUserInterface>({
   name: {
     type: String,
+    required: true,
   },
   email: {
     type: String,
+    required: true,
   },
   password: {
     type: String,
+    required: true,
   },
   roles: {
     type: [String],
@@ -21,4 +24,4 @@ const userSchema = new Schema<IUserInterface>({
 
 const User = model('User', userSchema)
 
-module.exports = User
+export default User

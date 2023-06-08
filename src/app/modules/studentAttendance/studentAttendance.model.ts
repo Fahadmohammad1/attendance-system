@@ -14,4 +14,4 @@ const studentAttendanceSchema = new Schema({
 
 const StudentAttendance = model('StudentAttendance', studentAttendanceSchema)
 
-module.exports = StudentAttendance
+export default StudentAttendance
