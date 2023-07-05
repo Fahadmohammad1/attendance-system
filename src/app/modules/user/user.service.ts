@@ -1,3 +1,4 @@
+import ApiError from '../../../errors/ApiError'
 import IUserInterface from './user.interface'
 import User from './user.model'
 import bcrypt from 'bcryptjs'
@@ -11,7 +12,7 @@ const createUser = async (user: IUserInterface) => {
   await createdUser.save()
 
   if (!createdUser) {
-    throw new Error('Failed to create user')
+    throw new ApiError(400, 'Failed to create user')
   }
   return createdUser
 }
