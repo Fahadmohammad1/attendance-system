@@ -18,10 +18,3 @@ const validateRequest =
   }
 
 export default validateRequest
-
-export const validateRequestTwo = (a: string) => (b: Request, c: Response) => {
-  console.log('from a', a)
-
-  console.log('from b', b)
-  console.log('from c', c)
-}
