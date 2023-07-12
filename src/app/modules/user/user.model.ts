@@ -16,6 +16,7 @@ const userSchema = new Schema<IUserInterface>({
   },
   roles: {
     type: [String],
+    required: true,
   },
   accountStatus: {
     type: String,
