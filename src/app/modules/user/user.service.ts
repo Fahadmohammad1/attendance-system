@@ -20,9 +20,37 @@ const createUser = async (user: IUserInterface) => {
   return createdUser
 }
 
-const getAllUser = async (paginationOptions: IpaginationOptions) => {
+const getAllUser = async (
+  paginationOptions: IpaginationOptions,
+  filters: { searchTerm?: string }
+) => {
   const { page, limit, skip, sortBy, sortOrder } =
     calculatePagination(paginationOptions)
+
+  const userSearchableFields = ['name', 'email', 'age']
+
+  const { searchTerm, ...filtersData } = filters
+
+  const andConditions = []
+
+  if (searchTerm) {
+    andConditions.push({
+      $or: userSearchableFields.map(field => ({
+        [field]: {
+          $regex: searchTerm,
+          $options: 'i',
+        },
+      })),
+    })
+  }
+
+  if (Object.keys(filtersData).length) {
+    andConditions.push({
+      $and: Object.entries(filtersData).map(([field, value]) => ({
+        [field]: value,
+      })),
+    })
+  }
 
   const sortConditions: { [key: string]: SortOrder } = {}
 
@@ -30,7 +58,7 @@ const getAllUser = async (paginationOptions: IpaginationOptions) => {
     sortConditions[sortBy] = sortOrder
   }
 
-  const result = await User.find({})
+  const result = await User.find({ $and: andConditions })
     .sort(sortConditions)
     .skip(skip)
     .limit(limit)

@@ -25,9 +25,10 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
 })
 
 const getAllUser = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, ['searchTerm', 'name', 'email', 'age'])
   const paginationOptions = pick(req.query, paginationFields)
 
-  const result = await UserService.getAllUser(paginationOptions)
+  const result = await UserService.getAllUser(paginationOptions, filters)
 
   res.status(200).json({
     statusCode: 200,

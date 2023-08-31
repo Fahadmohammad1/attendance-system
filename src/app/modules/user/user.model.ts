@@ -12,7 +12,7 @@ const userSchema = new Schema<IUserInterface>(
       required: true,
     },
     age: {
-      type: Number,
+      type: String,
       required: true,
     },
     password: {
